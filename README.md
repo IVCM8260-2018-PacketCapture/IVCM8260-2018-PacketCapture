@@ -3,6 +3,12 @@ Packet Capture using combination of Cisco Catalyst 3750-E, Moloch, and dsniff.
 
 For detailed information, please refer to [k-space](https://wiki.k-space.ee/index.php?title=Packet_capture)
 
+**Current project status:**
+
+**Problems:**
+
+**Plans for next week:**
+
 ## Members ##
 **Supervisors:** Toomas Lepik, Lauri Võsandi
 
