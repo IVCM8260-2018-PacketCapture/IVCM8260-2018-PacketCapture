@@ -113,10 +113,14 @@ Setting listening port to promiscuous mode:
 
 `$ nano ./dsniffloop.sh`
 
-# For loop through all captured .pcap files by using dsniff -p
+For loop through all captured .pcap files by using dsniff -p:
+
 for file in `find /data/moloch/raw/`;
+
 do
+
   dsniff -p file
+
 done
 
 ## Problems faced ##
@@ -127,13 +131,21 @@ Solution: (1) $ sudo systemcl status elasticserach service (2) rm -rf /data/molo
 2. ReadOnly protection by moloch: Moloch captures tons of packets, and there is a freespaceG setting in /data/moloch/etc/config.ini to delete pcap files when free space is lower then this. Also, elasticsearch will switch the state into read only when in low storage.
 
 Solution: Use the script below to switch read_only_allow_delete to false
+
 curl -X PUT "localhost:9200/_settings" -H 'Content-Type:application/json' -d '
+
 {
+
     "index": {
+    
     "blocks": {
+    
     "read_only_allow_delete": "false"
+    
     }
+    
     }
+
 }'
 
 ## Reference websites ##
