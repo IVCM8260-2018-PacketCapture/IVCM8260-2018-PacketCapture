@@ -158,3 +158,9 @@ curl -X PUT "localhost:9200/_settings" -H 'Content-Type:application/json' -d '
 4. [Install Elasticsearch with Debian Package](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb)
 
 5. [Moloch GitHub page](https://github.com/aol/moloch)
+
+6. [Clean up indices in elasticsearch](https://discuss.elastic.co/t/how-to-clean-up-storage-space-in-elasticsearch-cluster/43044/4)
+
+7. [ReadOnly error solution](https://discuss.elastic.co/t/forbidden-12-index-read-only-allow-delete-api/110282/5)
+
+8. [Moloch configuration file](https://github.com/aol/moloch/wiki/Settings)
