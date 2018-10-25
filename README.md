@@ -33,86 +33,91 @@ For detailed information, please refer to [k-space](https://wiki.k-space.ee/inde
 
 ### Catalyst Switched Port Analyzer (SPAN) Configuration ###
 1. Speed up switch port initialization process:
-`Switch> enable
 
-Switch# config terminal
+`Switch> enable`
 
-Switch(config)# int range fastEthernet 0/1 - 24
+`Switch# config terminal`
 
-Switch(config-if-range)# switchport mode access
+`Switch(config)# int range fastEthernet 0/1 - 24`
 
-Switch(config-if-range)# spanning-tree portfast`
+`Switch(config-if-range)# switchport mode access`
+
+`Switch(config-if-range)# spanning-tree portfast`
 
 2. Creating a SPAN Session
-`Switch> enable
 
-Switch# config terminal
+`Switch> enable`
 
-Switch(config)# monitor session 1 source interface fastEthernet 0/25
+`Switch# config terminal`
 
-Switch(config)# monitor session 1 destination interface fastEthernet 0/26
+`Switch(config)# monitor session 1 source interface fastEthernet 0/25`
 
-Switch(config)# exit
+`Switch(config)# monitor session 1 destination interface fastEthernet 0/26`
 
-Switch# copy run start`
+`Switch(config)# exit`
+
+`Switch# copy run start`
 
 ## Moloch ##
 ### Ubuntu server configuration ###
-`$ sudo ip link set [port] up
-$ sudo ip link set [port] promisc on`
+Setting listening port to promiscuous mode:
+
+`$ sudo ip link set [port] up`
+
+`$ sudo ip link set [port] promisc on`
 
 ### Moloch Installation ##
-`$ sudo apt-get update
+`$ sudo apt-get update`
 
-$ sudo apt-get install npm python-software-properties oracle-java8-installer curl apt-transport-https
+`$ sudo apt-get install npm python-software-properties oracle-java8-installer curl apt-transport-https`
 
-$ curl -sL -o https://deb.nodesource.com/setup_8.x | sudo -E bash -
+`$ curl -sL -o https://deb.nodesource.com/setup_8.x | sudo -E bash -`
 
-$ sudo apt-get install nodejs
+`$ sudo apt-get install nodejs`
 
-$ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+`$ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -`
 
-$ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+`$ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list`
 
-$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2.deb
+`$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.2.deb`
 
-$ sudo dpkg -i elasticsearch-6.4.2.deb
+`$ sudo dpkg -i elasticsearch-6.4.2.deb`
 
-$ sudo /bin/systemctl daemon-reload
+`$ sudo /bin/systemctl daemon-reload`
 
-$ sudo /bin/systemctl enable elasticsearch.service
+`$ sudo /bin/systemctl enable elasticsearch.service`
 
-$ sudo systemctl start elasticsearch.service
+`$ sudo systemctl start elasticsearch.service`
 
-$ wget https://files.molo.ch/builds/ubuntu-16.04/moloch_1.5.3-1_amd64.deb
+`$ wget https://files.molo.ch/builds/ubuntu-16.04/moloch_1.5.3-1_amd64.deb`
 
-$ dpkg -i moloch_1.5.3-1_amd64.deb`
+`$ dpkg -i moloch_1.5.3-1_amd64.deb`
 
 ### Moloch Configuration ###
-`$ sudo /data/moloch/bin/Configure
+`$ sudo /data/moloch/bin/Configure`
 
-$ sudo /data/moloch/db/db.pl http://localhost:9200 init
+`$ sudo /data/moloch/db/db.pl http://localhost:9200 init`
 
-$ /data/moloch/bin/moloch_add_user.sh admin "Admin user" [password] --admin
+`$ /data/moloch/bin/moloch_add_user.sh admin "Admin user" [password] --admin`
 
-$ systemctl start molochcapture.service
+`$ systemctl start molochcapture.service`
 
-$ systemctl start molochviewer.service`
+`$ systemctl start molochviewer.service`
 
 ### Moloch analysis ###
 
 ## dsniff ##
-`$ sudo apt-get update
+`$ sudo apt-get update`
 
-$ sudo apt-get install dsniff
+`$ sudo apt-get install dsniff`
 
-$ nano ./dsniffloop.sh
+`$ nano ./dsniffloop.sh`
 
 # For loop through all captured .pcap files by using dsniff -p
 for file in `find /data/moloch/raw/`;
 do
   dsniff -p file
-done`
+done
 
 ## Problems faced ##
 1. Old version elasticsearch: If you choose to install elasticseach during Moloch installation, the elasticsearch version accompanied is too old, and it binds elasticsearch service under /data/moloch/elasticsearch
@@ -122,14 +127,14 @@ Solution: (1) $ sudo systemcl status elasticserach service (2) rm -rf /data/molo
 2. ReadOnly protection by moloch: Moloch captures tons of packets, and there is a freespaceG setting in /data/moloch/etc/config.ini to delete pcap files when free space is lower then this. Also, elasticsearch will switch the state into read only when in low storage.
 
 Solution: Use the script below to switch read_only_allow_delete to false
-`curl -X PUT "localhost:9200/_settings" -H 'Content-Type:application/json' -d '
+curl -X PUT "localhost:9200/_settings" -H 'Content-Type:application/json' -d '
 {
     "index": {
     "blocks": {
     "read_only_allow_delete": "false"
     }
     }
-}'`
+}'
 
 ## Reference websites ##
 1. [5 Linux / Unix Commands For Connecting To The Serial Console](https://www.cyberciti.biz/hardware/5-linux-unix-commands-for-connecting-to-the-serial-console/)
