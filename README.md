@@ -104,6 +104,17 @@ Setting listening port to promiscuous mode:
 
 `$ systemctl start molochviewer.service`
 
+### Moloch data deletion ###
+(1) Moloch pcap files deletion:
+
+/data/moloch/etc/config.ini: freeSpaceG = 5%
+
+(2) Elasticsearch indices deletion
+
+Build-in shell script: /data/moloch/db/daily.sh
+
+Scheduling using /etc/crontab
+
 ### Moloch analysis ###
 
 ## dsniff ##
