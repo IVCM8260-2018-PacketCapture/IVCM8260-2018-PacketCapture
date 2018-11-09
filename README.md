@@ -175,3 +175,5 @@ curl -X PUT "localhost:9200/_settings" -H 'Content-Type:application/json' -d '
 7. [ReadOnly error solution](https://discuss.elastic.co/t/forbidden-12-index-read-only-allow-delete-api/110282/5)
 
 8. [Moloch configuration file](https://github.com/aol/moloch/wiki/Settings)
+
+9. [Data never gets deleted](https://github.com/aol/moloch/wiki/FAQ#data-never-gets-deleted)
