@@ -12,7 +12,7 @@ For detailed information, please refer to [k-space](https://wiki.k-space.ee/inde
 ## Members ##
 **Supervisors:** Toomas Lepik, Lauri Võsandi
 
-**Students:** Ilkan Serhan IVCM, ChengYu Lu 184679IVCM
+**Students:** Ilkan Mustafa Sahan IVCM, ChengYu Lu 184679IVCM
 
 ## Contents ##
 - [Cisco Catalyst 3750-E](#cisco-catalyst-3750-E)
@@ -103,6 +103,16 @@ Setting listening port to promiscuous mode:
 `$ systemctl start molochcapture.service`
 
 `$ systemctl start molochviewer.service`
+
+### Enabling TLS for Viewer ###
+(1) Creating keypair and Certificate
+`$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /data/moloch/etc/moloch.key -out /data/moloch/etc/moloch.cert`
+
+(2) Comment out the below line in the configuration file(/data/moloch/etc/config.ini) to enable TLS
+
+certFile=/data/moloch/etc/moloch.cert
+
+keyFile=/data/moloch/etc/moloch.key
 
 ### Moloch data deletion ###
 (1) Moloch pcap files deletion:
