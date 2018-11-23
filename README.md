@@ -114,6 +114,9 @@ certFile=/data/moloch/etc/moloch.cert
 
 keyFile=/data/moloch/etc/moloch.key
 
+### Moloch packet filtering ###
+(1) Edit bpf under /data/moloch/etc/config.ini by using bpf filtering syntax
+
 ### Moloch data deletion ###
 (1) Moloch pcap files deletion:
 
