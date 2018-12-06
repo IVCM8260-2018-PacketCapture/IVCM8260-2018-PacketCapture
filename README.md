@@ -3,11 +3,11 @@ Packet Capture using combination of Cisco Catalyst 3750-E, Moloch, and dsniff.
 
 For detailed information, please refer to [k-space](https://wiki.k-space.ee/index.php?title=Packet_capture)
 
-**Current project status:** Moloch operates successfully with Elasticsearch on local server
+**Current project status:** Moloch operates successfully with Elasticsearch on seperate server
 
 **Problems:**
 
-**Plans for next week:** Migrate remote Elasticsearch server with Moloch
+**Plans for next week:** Moloch plugins
 
 ## Members ##
 **Supervisors:** Toomas Lepik, Lauri Võsandi
